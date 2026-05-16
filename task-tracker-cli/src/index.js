@@ -1,5 +1,10 @@
-const command = process.argv[2];
-const description = process.argv[3];
+const { addTask } = require("./taskManager");
 
-console.log(command);
-console.log(description);
+const command = process.argv[2];
+const argument = process.argv[3];
+
+if (command === "add") {
+    addTask(argument);
+} else {
+    console.log("Unknown command");
+}
