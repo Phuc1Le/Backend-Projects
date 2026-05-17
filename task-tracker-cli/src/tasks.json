@@ -2,16 +2,16 @@
   {
     "id": 1,
     "description": "Hug Huyen",
-    "status": "todo",
+    "status": "done",
     "createdAt": "2026-05-17T02:09:00.340Z",
-    "updatedAt": "2026-05-17T02:14:24.355Z"
+    "updatedAt": "2026-05-17T03:47:16.863Z"
   },
   {
     "id": 4,
     "description": "Ask Huyen out",
-    "status": "todo",
+    "status": "in-progress",
     "createdAt": "2026-05-17T02:09:43.985Z",
-    "updatedAt": "2026-05-17T02:09:43.986Z"
+    "updatedAt": "2026-05-17T03:47:01.094Z"
   },
   {
     "id": 5,

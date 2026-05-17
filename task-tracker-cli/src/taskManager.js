@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const tasksFilePath = path.join(__dirname, "tasks.json");
+const validStatuses = ["todo", "in-progress", "done"];
 const loadTasks = ()=>{
     const dataBuffer = fs.readFileSync(tasksFilePath);
     const dataJSON = dataBuffer.toString();
@@ -78,10 +79,33 @@ const deleteTask = (id) => {
     saveTask(filteredTasks);
     console.log("Task deleted successfully.");
 }
+
+const updateStatus = (id, newStatus) => {
+    if (!validStatuses.includes(newStatus)) {
+        console.log("Invalid status.");
+        return;
+    }
+    const tasks = loadTasks();
+
+    const task = tasks.find((task) => task.id === Number(id));
+
+    if (!task) {
+        console.log("Task not found.");
+        return;
+    }
+
+    task.status = newStatus;
+    task.updatedAt = new Date().toISOString();
+
+    saveTask(tasks);
+
+    console.log(`Task marked as ${newStatus}.`);
+}
 module.exports = {
     addTask,
     loadTasks,
     listTasks,
     updateTask,
-    deleteTask
+    deleteTask,
+    updateStatus
 };
