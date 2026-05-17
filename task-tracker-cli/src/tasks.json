@@ -5,5 +5,12 @@
     "status": "todo",
     "createdAt": "2026-05-16T12:58:33.162Z",
     "updatedAt": "2026-05-16T12:58:33.163Z"
+  },
+  {
+    "id": 2,
+    "description": "Finish project",
+    "status": "todo",
+    "createdAt": "2026-05-17T01:25:42.920Z",
+    "updatedAt": "2026-05-17T01:25:42.920Z"
   }
 ]

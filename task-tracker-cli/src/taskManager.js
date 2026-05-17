@@ -27,6 +27,27 @@ const addTask = (description) => {
     console.log(`Task added successfully (ID: ${newTask.id})`);
 }
 
+const listTasks = (status) => {
+    const tasks = loadTasks();
+    let filterTasks = tasks;
+    if(status){
+        filterTasks = tasks.filter((task) => task.status === status);
+    }
+    if(filterTasks.length == 0){
+        console.log("No task found");
+        return;
+    }
+    filterTasks.forEach(task => {
+        console.log(`
+ID: ${task.id}
+Description: ${task.description}
+Status: ${task.status}
+Created: ${task.createdAt}
+Updated: ${task.updatedAt}`);
+    });
+}
 module.exports = {
-    addTask
+    addTask,
+    loadTasks,
+    listTasks
 };
