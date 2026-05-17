@@ -15,8 +15,11 @@ const saveTask = (tasks) => {
 
 const addTask = (description) => {
     const tasks = loadTasks();
+    const maxId = tasks.reduce((max, task) => {
+        return task.id > max ? task.id : max;
+    }, 0);
     const newTask = {
-        id: tasks.length + 1,
+        id: maxId + 1,
         description: description,
         status: "todo",
         createdAt: new Date().toISOString(),
@@ -46,8 +49,39 @@ Created: ${task.createdAt}
 Updated: ${task.updatedAt}`);
     });
 }
+
+const updateTask = (id, newDescription) => {
+    const tasks = loadTasks();
+    const task = tasks.find((task) => task.id === Number(id));
+
+    if (!task) {
+        console.log("Task not found.");
+        return;
+    }
+    task.description = newDescription;
+    task.updatedAt = new Date().toISOString();
+    saveTask(tasks);
+    console.log("Task updated successfully.");
+}
+
+const deleteTask = (id) => {
+    const tasks = loadTasks();
+
+    const filteredTasks = tasks.filter(
+        (task) => task.id !== Number(id)
+    );
+
+    if (filteredTasks.length === tasks.length) {
+        console.log("Task not found.");
+        return;
+    }
+    saveTask(filteredTasks);
+    console.log("Task deleted successfully.");
+}
 module.exports = {
     addTask,
     loadTasks,
-    listTasks
+    listTasks,
+    updateTask,
+    deleteTask
 };
