@@ -1,12 +1,26 @@
 const fs = require("fs");
 const path = require("path");
+function ensureTasksFileExists() {
+    if (!fs.existsSync(tasksFilePath)) {
+        fs.writeFileSync(tasksFilePath, "[]");
+    }
+}
 const tasksFilePath = path.join(__dirname, "tasks.json");
 const validStatuses = ["todo", "in-progress", "done"];
 const loadTasks = ()=>{
-    const dataBuffer = fs.readFileSync(tasksFilePath);
-    const dataJSON = dataBuffer.toString();
+    ensureTasksFileExists();
+    try {
+        const dataBuffer = fs.readFileSync(tasksFilePath);
+        const dataJSON = dataBuffer.toString();
 
-    return JSON.parse(dataJSON);
+        return JSON.parse(dataJSON);
+    }
+
+    catch (error) {
+        console.log("Error reading tasks file.");
+
+        return [];
+    }
 }
 
 const saveTask = (tasks) => {
@@ -14,7 +28,14 @@ const saveTask = (tasks) => {
     fs.writeFileSync(tasksFilePath, dataJSON);
 }
 
+function isValidId(id) {
+    return Number.isInteger(Number(id)) && Number(id) > 0;
+}
 const addTask = (description) => {
+    if (!description || description.trim() === "") {
+        console.log("Task description is required.");
+        return;
+    }
     const tasks = loadTasks();
     const maxId = tasks.reduce((max, task) => {
         return task.id > max ? task.id : max;
@@ -52,6 +73,14 @@ Updated: ${task.updatedAt}`);
 }
 
 const updateTask = (id, newDescription) => {
+    if (!isValidId(id)) {
+        console.log("Invalid task ID.");
+        return;
+    }
+    if (!newDescription || newDescription.trim() === "") {
+        console.log("New description is required.");
+        return;
+    }
     const tasks = loadTasks();
     const task = tasks.find((task) => task.id === Number(id));
 
@@ -66,6 +95,10 @@ const updateTask = (id, newDescription) => {
 }
 
 const deleteTask = (id) => {
+    if (!isValidId(id)) {
+        console.log("Invalid task ID.");
+        return;
+    }
     const tasks = loadTasks();
 
     const filteredTasks = tasks.filter(
@@ -81,6 +114,10 @@ const deleteTask = (id) => {
 }
 
 const updateStatus = (id, newStatus) => {
+    if (!isValidId(id)) {
+        console.log("Invalid task ID.");
+        return;
+    }
     if (!validStatuses.includes(newStatus)) {
         console.log("Invalid status.");
         return;

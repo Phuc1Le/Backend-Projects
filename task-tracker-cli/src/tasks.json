@@ -1,23 +1,9 @@
 [
   {
     "id": 1,
-    "description": "Hug Huyen",
-    "status": "done",
-    "createdAt": "2026-05-17T02:09:00.340Z",
-    "updatedAt": "2026-05-17T03:47:16.863Z"
-  },
-  {
-    "id": 4,
     "description": "Ask Huyen out",
-    "status": "in-progress",
-    "createdAt": "2026-05-17T02:09:43.985Z",
-    "updatedAt": "2026-05-17T03:47:01.094Z"
-  },
-  {
-    "id": 5,
-    "description": "Teach SAT",
     "status": "todo",
-    "createdAt": "2026-05-17T02:14:36.079Z",
-    "updatedAt": "2026-05-17T02:14:36.079Z"
+    "createdAt": "2026-05-17T03:53:23.700Z",
+    "updatedAt": "2026-05-17T03:53:23.700Z"
   }
 ]
