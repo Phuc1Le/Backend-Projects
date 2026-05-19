@@ -2,6 +2,9 @@
 
 A simple command line interface (CLI) application built with Node.js that fetches and displays a GitHub user's recent public activity using the GitHub API.
 
+## Inspiration
+https://roadmap.sh/projects/github-user-activity
+
 ## Features
 
 - Fetch recent GitHub activity for any public user
