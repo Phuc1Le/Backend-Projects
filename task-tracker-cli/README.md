@@ -24,6 +24,7 @@ The project was built without external libraries to practice:
   - done
 - List all tasks
 - Filter tasks by status
+- Delete tasks by status
 - Persistent JSON storage
 - Input validation and error handling
 - Automatic task file creation
@@ -104,6 +105,11 @@ npm start 1 "Buy groceries and cook dinner"
 
 ```bash
 npm start delete 1
+```
+## Delete tasks by status
+
+```bash
+npm start delete done
 ```
 
 ---

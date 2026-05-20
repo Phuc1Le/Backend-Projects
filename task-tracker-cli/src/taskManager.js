@@ -95,23 +95,32 @@ const updateTask = (id, newDescription) => {
     console.log("Task updated successfully.");
 }
 
-const deleteTask = (id) => {
-    if (!isValidId(id)) {
-        console.log("Invalid task ID.");
+const deleteTask = (crit) => {
+    if (!isValidId(crit) && !validStatuses.includes(crit)) {
+        console.log("Invalid argument");
         return;
     }
     const tasks = loadTasks();
+    if(isValidId(crit)){
+        const filteredTasks = tasks.filter(
+            (task) => task.id !== Number(crit)
+        );
 
-    const filteredTasks = tasks.filter(
-        (task) => task.id !== Number(id)
-    );
-
-    if (filteredTasks.length === tasks.length) {
-        console.log("Task not found.");
-        return;
+        if (filteredTasks.length === tasks.length) {
+            console.log("Task not found.");
+            return;
+        }
+        saveTask(filteredTasks);
+        console.log("Task deleted successfully.");
     }
-    saveTask(filteredTasks);
-    console.log("Task deleted successfully.");
+    else if(validStatuses.includes(crit)){
+        const filteredTasks = tasks.filter(
+            (task) => task.status !== crit
+        );
+        saveTask(filteredTasks);
+        let numberDeleted = tasks.length - filteredTasks.length;
+        console.log(`${numberDeleted} tasks deleted`);
+    }
 }
 
 const updateStatus = (id, newStatus) => {
