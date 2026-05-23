@@ -5,6 +5,26 @@
 </head>
 <body>
     <h1>My Personal Blog</h1>
-    <p>Welcome to the blog.</p>
+
+    <% if (articles.length === 0) { %>
+        <p>No articles yet.</p>
+    <% } %>
+
+    <% articles.forEach((article) => { %>
+        <div>
+            <h2>
+                <a href="/article/<%= article.id %>">
+                    <%= article.title %>
+                </a>
+            </h2>
+
+            <p>
+                Published:
+                <%= article.createdAt %>
+            </p>
+        </div>
+
+        <hr>
+    <% }) %>
 </body>
 </html>

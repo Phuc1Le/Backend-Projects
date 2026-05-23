@@ -5,23 +5,31 @@ const PORT = 3000;
 
 const {
     getAllArticles,
-    createArticle
+    createArticle,
+    getArticleById
 } = require("./utils/articleManager");
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 
-app.get("/", (req,res) => {
-    res.render("home")
-})
+app.get("/", (req, res) => {
+    const articles = getAllArticles();
 
-app.get("/test", (req, res) => {
-    createArticle(
-        "My First Article",
-        "This is my first blog post."
-    );
+    res.render("home", {
+        articles
+    });
+});
 
-    res.send("Test article created.");
+app.get("/article/:id", (req, res) => {
+    const article = getArticleById(req.params.id);
+
+    if (!article) {
+        return res.status(404).send("Article not found.");
+    }
+
+    res.render("article", {
+        article
+    });
 });
 
 app.listen(PORT, ()=>{

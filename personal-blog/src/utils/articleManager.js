@@ -38,7 +38,16 @@ const createArticle = (title, content) => {
 
     return newArticle;
 };
+
+const getArticleById = (id) => {
+    const articles = getAllArticles();
+
+    return articles.find(
+        (article) => article.id === Number(id)
+    );
+};
 module.exports = {
     getAllArticles,
-    createArticle
+    createArticle,
+    getArticleById
 };
