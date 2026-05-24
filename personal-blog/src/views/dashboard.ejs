@@ -25,6 +25,18 @@
             <a href="/edit/<%= article.id %>">
                 Edit
             </a>
+            <form
+                action="/delete/<%= article.id %>"
+                method="POST"
+                style="display:inline;"
+            >
+                <button 
+                    type="submit"
+                    onclick="return confirm('Delete this article?')"
+                >
+                    Delete
+                </button>
+            </form>
         </div>
 
         <hr>

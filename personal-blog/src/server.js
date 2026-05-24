@@ -8,6 +8,7 @@ const {
     createArticle,
     getArticleById,
     editArticleById,
+    deleteArticleById
 } = require("./utils/articleManager");
 
 app.set("view engine", "ejs")
@@ -95,6 +96,21 @@ app.post("/edit/:id", (req, res) => {
 
     res.redirect("/admin");
 })
+
+app.post("/delete/:id", (req, res) => {
+    const deleted = deleteArticleById(
+        req.params.id
+    );
+
+    if (!deleted) {
+        return res.status(404).send(
+            "Article not found."
+        );
+    }
+
+    res.redirect("/admin");
+});
+
 app.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`);
 })

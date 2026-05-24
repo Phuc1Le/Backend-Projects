@@ -14,6 +14,18 @@ const getAllArticles = () => {
         return JSON.parse(fileContent);
     });
 
+    articles.sort((a, b) => {
+        const dateA = new Date(
+            a.lastModifiedAt
+        );
+
+        const dateB = new Date(
+            b.lastModifiedAt
+        );
+
+        return dateB - dateA;
+    });
+
     return articles;
 };
 const createArticle = (title, content) => {
@@ -71,9 +83,27 @@ const editArticleById = (id, newTitle, newContent) => {
 
     return article;
 };
+
+const deleteArticleById = (id) => {
+    const article = getArticleById(id);
+
+    if (!article) {
+        return false;
+    }
+
+    const filePath = path.join(
+        articlesDirectory,
+        `${article.id}.json`
+    );
+
+    fs.unlinkSync(filePath);
+
+    return true;
+};
 module.exports = {
     getAllArticles,
     createArticle,
     getArticleById,
-    editArticleById
+    editArticleById,
+    deleteArticleById
 };
