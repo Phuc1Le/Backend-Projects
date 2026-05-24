@@ -2,8 +2,17 @@
 <html>
 <head>
     <title>Personal Blog</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="/">My Blog</a>
+
+        <div>
+            <a href="/admin">Dashboard</a>
+        </div>
+    </nav>
+    <div class="container">
     <h1>My Personal Blog</h1>
 
     <% if (articles.length === 0) { %>
@@ -11,24 +20,36 @@
     <% } %>
 
     <% articles.forEach((article) => { %>
-        <div>
+
+        <div class="article-card">
+
             <h2>
                 <a href="/article/<%= article.id %>">
                     <%= article.title %>
                 </a>
             </h2>
 
-            <p>
+            <p class="article-date">
                 Published:
-                <%= article.createdAt %>
+                <%= new Date(
+                    article.createdAt
+                ).toLocaleDateString() %>
             </p>
-            <p>
-                Last edited at:
-                <%= article.lastModifiedAt %>
+
+            <p class="article-preview">
+                <%= article.content.slice(0, 180) %>...
             </p>
+
+            <a
+                class="read-more"
+                href="/article/<%= article.id %>"
+            >
+                Read More →
+            </a>
+
         </div>
 
-        <hr>
     <% }) %>
+    </div>
 </body>
 </html>

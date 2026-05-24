@@ -2,8 +2,17 @@
 <html>
 <head>
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="/">My Blog</a>
+
+        <div>
+            <a href="/admin">Dashboard</a>
+        </div>
+    </nav>
+    <div class="container">
     <h1>Admin Dashboard</h1>
 
     <a href="/new">Create New Article</a>
@@ -15,32 +24,45 @@
     <% } %>
 
     <% articles.forEach((article) => { %>
-        <div>
+        <div class="article-card">
             <h2><%= article.title %></h2>
 
-            <a href="/admin/article/<%= article.id %>">
-                View
-            </a>
+           <div class="action-buttons">
 
-            <a href="/edit/<%= article.id %>">
-                Edit
-            </a>
-            <form
-                action="/delete/<%= article.id %>"
-                method="POST"
-                style="display:inline;"
-            >
-                <button 
-                    type="submit"
-                    onclick="return confirm('Delete this article?')"
+                <a
+                    class="action-link"
+                    href="/admin/article/<%= article.id %>"
                 >
-                    Delete
-                </button>
-            </form>
+                    View
+                </a>
+
+                <a
+                    class="action-link"
+                    href="/edit/<%= article.id %>"
+                >
+                    Edit
+                </a>
+
+                <form
+                    class="delete-form"
+                    action="/delete/<%= article.id %>"
+                    method="POST"
+                >
+                    <button
+                        class="delete-button"
+                        type="submit"
+                        onclick="return confirm('Delete this article?')"
+                    >
+                        Delete
+                    </button>
+                </form>
+
+            </div>
         </div>
 
         <hr>
     <% }) %>
     <a href="/logout">Logout</a>
+    </div>
 </body>
 </html>

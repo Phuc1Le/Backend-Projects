@@ -2,8 +2,17 @@
 <html>
 <head>
     <title>New Article</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="/">My Blog</a>
+
+        <div>
+            <a href="/admin">Dashboard</a>
+        </div>
+    </nav>
+    <div class="container">
     <h1>Create New Article</h1>
 
     <form action="/new" method="POST">
@@ -37,5 +46,6 @@
             Create Article
         </button>
     </form>
+    </div>
 </body>
 </html>

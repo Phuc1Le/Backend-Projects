@@ -2,28 +2,38 @@
 <html>
 <head>
     <title><%= article.title %></title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="/">My Blog</a>
+
+        <div>
+            <a href="/admin">Dashboard</a>
+        </div>
+    </nav>
     <% if (isAdminView) { %>
-        <a href="/admin">← Back to Dashboard</a>
+        <a class="back-link" href="/admin">
+            ← Back to Dashboard
+        </a>
     <% } else { %>
-        <a href="/">← Back to Home</a>
+        <a class="back-link" href="/">
+            ← Back to Home
+        </a>
     <% } %>
-
+    <div class="container">
     <h1><%= article.title %></h1>
-
-    <p>
-        Published:
-        <%= article.createdAt %>
-    </p>
-    <p>
-        Last edited at:
-        <%= article.lastModifiedAt %>
+    <p class="article-date">
+        Last updated:
+        <%= new Date(
+            article.lastModifiedAt
+        ).toLocaleString() %>
     </p>
     <hr>
 
-    <p style="white-space: pre-wrap;">
+    <div class="article-content">
         <%= article.content %>
-    </p>
+    </div>
+    </div>
 </body>
 </html>
