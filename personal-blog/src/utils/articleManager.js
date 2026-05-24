@@ -23,7 +23,8 @@ const createArticle = (title, content) => {
         id: Date.now(),
         title,
         content,
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        lastModifiedAt: new Date().toISOString()
     };
 
     const filePath = path.join(
@@ -46,8 +47,33 @@ const getArticleById = (id) => {
         (article) => article.id === Number(id)
     );
 };
+
+const editArticleById = (id, newTitle, newContent) => {
+    const article = getArticleById(id);
+
+    if (!article) {
+        return null;
+    }
+    article.title = newTitle
+    article.content = newContent;
+
+    article.lastModifiedAt = new Date().toISOString();
+
+    const filePath = path.join(
+        articlesDirectory,
+        `${article.id}.json`
+    );
+
+    fs.writeFileSync(
+        filePath,
+        JSON.stringify(article, null, 2)
+    );
+
+    return article;
+};
 module.exports = {
     getAllArticles,
     createArticle,
-    getArticleById
+    getArticleById,
+    editArticleById
 };

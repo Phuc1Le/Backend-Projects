@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+
+    <a href="/new">Create New Article</a>
+
+    <hr>
+
+    <% if (articles.length === 0) { %>
+        <p>No articles found.</p>
+    <% } %>
+
+    <% articles.forEach((article) => { %>
+        <div>
+            <h2><%= article.title %></h2>
+
+            <a href="/admin/article/<%= article.id %>">
+                View
+            </a>
+
+            <a href="/edit/<%= article.id %>">
+                Edit
+            </a>
+        </div>
+
+        <hr>
+    <% }) %>
+</body>
+</html>

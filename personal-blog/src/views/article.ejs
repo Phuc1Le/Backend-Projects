@@ -4,7 +4,11 @@
     <title><%= article.title %></title>
 </head>
 <body>
-    <a href="/">← Back to Home</a>
+    <% if (isAdminView) { %>
+        <a href="/admin">← Back to Dashboard</a>
+    <% } else { %>
+        <a href="/">← Back to Home</a>
+    <% } %>
 
     <h1><%= article.title %></h1>
 
@@ -12,10 +16,13 @@
         Published:
         <%= article.createdAt %>
     </p>
-
+    <p>
+        Last edited at:
+        <%= article.lastModifiedAt %>
+    </p>
     <hr>
 
-    <p>
+    <p style="white-space: pre-wrap;">
         <%= article.content %>
     </p>
 </body>
