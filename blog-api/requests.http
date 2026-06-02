@@ -1,0 +1,30 @@
+GET http://localhost:3000/posts
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+    "title": "Learning heart",
+    "content": "This is my new article",
+    "category": "Medical"
+}
+
+###
+
+PUT http://localhost:3000/posts/20
+Content-Type: application/json
+
+{
+    "title": "Updated Title",
+    "content": "Updated Content",
+    "category": "Programming"
+}
+
+###
+
+DELETE http://localhost:3000/posts/68
+
+###
+
+GET http://localhost:3000/posts?term=tech
