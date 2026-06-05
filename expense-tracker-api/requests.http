@@ -5,3 +5,16 @@ Content-Type: application/json
     "email": "lehongphucnasa@gmail.com",
     "password": "yeupkhuyen"
 }
+
+###
+
+POST http://localhost:3000/expenses
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJsZWhvbmdwaHVjbmFzYUBnbWFpbC5jb20iLCJpYXQiOjE3ODA1NDk0MjQsImV4cCI6MTc4MDU1NjYyNH0.njoDnPohkI9Po66GdBsXIbe1xb5CvdO-Jk-wxv-3hcU
+Content-Type: application/json
+
+{
+    "amount": 50.13,
+    "description": "Taking Grace out",
+    "category": "Love",
+    "expense_date": "2026-06-04"
+}
