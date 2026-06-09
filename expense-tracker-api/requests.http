@@ -1,3 +1,22 @@
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email": "lehongphuclamviec@gmail.com",
+    "password": "maiyeuhuyen"
+}
+
+###
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "lehongphuclamviec@gmail.com",
+    "password": "maiyeuhuyen"
+}
+
+###
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
@@ -9,12 +28,36 @@ Content-Type: application/json
 ###
 
 POST http://localhost:3000/expenses
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJsZWhvbmdwaHVjbmFzYUBnbWFpbC5jb20iLCJpYXQiOjE3ODA1NDk0MjQsImV4cCI6MTc4MDU1NjYyNH0.njoDnPohkI9Po66GdBsXIbe1xb5CvdO-Jk-wxv-3hcU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJsZWhvbmdwaHVjbmFzYUBnbWFpbC5jb20iLCJpYXQiOjE3ODA2NTk5OTQsImV4cCI6MTc4MDY2NzE5NH0.bkLxxIueS4ZfDdcJGmSykwqkIx_eMd1CBZ0x1O1qM-E
 Content-Type: application/json
 
 {
     "amount": 50.13,
     "description": "Taking Grace out",
     "category": "Love",
+    "expense_date": "2026-06-05"
+}
+
+###
+
+GET http://localhost:3000/expenses?startDate=2026-06-05&endDate=2026-06-05
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJsZWhvbmdwaHVjbmFzYUBnbWFpbC5jb20iLCJpYXQiOjE3ODA2NTg1MDMsImV4cCI6MTc4MDY2NTcwM30.-oqSKMc1ATsSS6sMCDw878o5p-KzumBgNPJ3gzkv8z4
+
+###
+
+PUT http://localhost:3000/expenses/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJsZWhvbmdwaHVjbGFtdmllY0BnbWFpbC5jb20iLCJpYXQiOjE3ODA2NTgzODcsImV4cCI6MTc4MDY2NTU4N30.P0VXHjFQUCDZqquXAHNC1UZzULm01ZcSVBHN93zO0jk
+Content-Type: application/json
+
+{
+    "amount": 999,
+    "description": "Testing",
+    "category": "Others",
     "expense_date": "2026-06-04"
 }
+
+###
+
+DELETE http://localhost:3000/expenses/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJsZWhvbmdwaHVjbmFzYUBnbWFpbC5jb20iLCJpYXQiOjE3ODA2NTg1MDMsImV4cCI6MTc4MDY2NTcwM30.-oqSKMc1ATsSS6sMCDw878o5p-KzumBgNPJ3gzkv8z4
+
