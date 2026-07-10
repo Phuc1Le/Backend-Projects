@@ -1,0 +1,38 @@
+---
+- name: Configure Todo API server
+  hosts: todo
+  become: true
+
+  vars:
+    docker_users:
+      - ubuntu
+
+  roles:
+    - geerlingguy.docker
+
+  tasks:
+    - name: Create application directory
+      file:
+        path: /home/ubuntu/todo-app
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: "0755"
+
+    - name: Copy docker-compose file
+      copy:
+        src: ../docker-compose.prod.yml
+        dest: /home/ubuntu/todo-app/docker-compose.yml
+        owner: ubuntu
+        group: ubuntu
+        mode: "0644"
+
+    - name: Pull Docker images
+      command: docker compose pull
+      args:
+        chdir: /home/ubuntu/todo-app
+
+    - name: Start containers
+      command: docker compose up -d
+      args:
+        chdir: /home/ubuntu/todo-app

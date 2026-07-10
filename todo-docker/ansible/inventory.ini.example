@@ -1,0 +1,6 @@
+[todo]
+YOUR_SERVER_IP 
+
+[todo:vars]
+ansible_user=ubuntu 
+ansible_ssh_private_key_file=~/.ssh/your-key
