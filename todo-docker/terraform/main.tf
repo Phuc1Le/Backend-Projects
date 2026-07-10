@@ -62,3 +62,15 @@ resource "aws_instance" "todo_server" {
     Name = "todo-api-server"
   }
 }
+resource "aws_eip" "todo_ip" {
+  domain = "vpc"
+
+  tags = {
+    Name = "todo-api-ip"
+  }
+}
+
+resource "aws_eip_association" "todo_ip_assoc" {
+  instance_id   = aws_instance.todo_server.id
+  allocation_id = aws_eip.todo_ip.id
+}
