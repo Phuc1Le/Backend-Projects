@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "todo-docker/**"
+      - ".github/workflows/todo-docker-deploy.yml"
 
 jobs:
   deploy:

@@ -15,10 +15,9 @@ connectDB();
 app.use("/todos", todoRoutes);
 
 app.get("/", (req, res) => {
-    res.send("Todo API is running");
+    res.send("Todo API is running on an EC2 instance");
 });
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
-    console.log("hello")
 });
