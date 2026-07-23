@@ -1,16 +1,90 @@
 # Todo API with Docker, Terraform, Ansible, and CI/CD
 
-A simple RESTful Todo API built with **Node.js**, **Express**, and **MongoDB**. This project demonstrates containerization with Docker, infrastructure provisioning with Terraform, server configuration using Ansible, automated deployments with GitHub Actions, and reverse proxying with Nginx.
+> Deploying a backend service from local development to production using modern DevOps practices.
 
-## Features
+## Why
 
-- CRUD REST API for managing todos
-- MongoDB persistence with Docker named volumes
-- Docker Compose for local development
-- AWS EC2 infrastructure provisioned with Terraform
-- Automated server configuration using Ansible
-- CI/CD pipeline with GitHub Actions
-- Nginx reverse proxy for production deployment
+Building an API is only part of backend engineering. Deploying, configuring, and maintaining production infrastructure requires a different set of tools and workflows.
+
+I built this project to learn the complete deployment lifecycle—from containerizing an application with Docker, provisioning cloud infrastructure with Terraform, configuring servers with Ansible, to automating deployments with GitHub Actions.
+
+## What I Built
+
+The project consists of a simple RESTful Todo API backed by MongoDB and deployed to AWS.
+
+It demonstrates:
+
+- Containerized application development with Docker
+- Infrastructure provisioning using Terraform
+- Automated server configuration with Ansible
+- CI/CD deployments through GitHub Actions
+- Production routing with Nginx
+
+## Architecture
+```text
+                    Git Push
+                       │
+                       ▼
+               GitHub Actions CI/CD
+                       │
+         Build & Push Docker Image
+                       │
+                       ▼
+                  Docker Hub
+                       │
+                       ▼
+                 AWS EC2 Instance
+        (Provisioned with Terraform)
+                       │
+        Configured by Ansible Playbook
+                       │
+                       ▼
+                  Docker Compose
+               ┌────────┴────────┐
+               ▼                 ▼
+         Nginx Reverse Proxy   MongoDB
+               │
+               ▼
+         Express REST API
+```
+
+### Infrastructure
+
+- **Terraform** provisions the AWS infrastructure, including the EC2 instance, security group, and Elastic IP.
+- **Ansible** configures the server by installing Docker, deploying configuration files, and starting application services.
+- **Docker Compose** orchestrates the API, MongoDB, and Nginx containers.
+
+### Application
+
+- **Express.js** exposes a REST API for managing todo items.
+- **MongoDB** stores application data using a persistent Docker volume.
+- **Nginx** acts as a reverse proxy, forwarding incoming HTTP requests to the API container.
+
+### Continuous Deployment
+
+Every push to the `main` branch automatically:
+
+1. Builds a new Docker image.
+2. Pushes the image to Docker Hub.
+3. Connects to the EC2 instance over SSH.
+4. Pulls the latest image.
+5. Restarts the containers with Docker Compose.
+
+This creates a fully automated deployment pipeline where code changes can be deployed to production with a single Git push.
+
+## Engineering Highlights
+
+- Containerized the API and database with Docker Compose.
+- Provisioned AWS infrastructure using Terraform.
+- Automated server configuration with Ansible playbooks.
+- Built a GitHub Actions pipeline for continuous deployment.
+- Configured Nginx as a reverse proxy.
+
+## What I Learned
+
+This project helped me understand that deploying software involves much more than writing application code. Automating infrastructure with Terraform and Ansible made deployments repeatable and significantly reduced manual server configuration.
+
+I also learned how containerization, reverse proxies, and CI/CD pipelines fit together to create a production deployment workflow similar to those used in industry.
 
 ## Tech Stack
 
@@ -119,27 +193,3 @@ The deployment workflow:
 ├── index.js
 └── package.json
 ```
-
-## Architecture
-
-```
-Browser
-    │
-    ▼
-Nginx (EC2)
-    │
-    ▼
-Node.js API
-    │
-    ▼
-MongoDB
-```
-
-Infrastructure is managed with Terraform, server configuration with Ansible, and application deployments with GitHub Actions.
-
-## Status
-
-- ✅ Requirement #1 — Dockerized API with Docker Compose and persistent MongoDB storage
-- ✅ Requirement #2 — AWS infrastructure provisioned with Terraform and configured using Ansible
-- ✅ Requirement #3 — Automated CI/CD deployment using GitHub Actions
-- ✅ Bonus — Nginx reverse proxy for production access
