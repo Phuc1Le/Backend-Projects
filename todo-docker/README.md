@@ -67,7 +67,7 @@ Every push to the `main` branch automatically:
 1. Builds a new Docker image.
 2. Pushes the image to Docker Hub.
 3. Connects to the EC2 instance over SSH.
-4. Pulls the latest image.
+4. Pulls the latest image
 5. Restarts the containers with Docker Compose.
 
 This creates a fully automated deployment pipeline where code changes can be deployed to production with a single Git push.
