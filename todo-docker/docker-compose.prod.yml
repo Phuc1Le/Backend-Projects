@@ -10,8 +10,8 @@ services:
       
   api:
     image: lehongphuc0903/todo-api:latest
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
       MONGO_URI: mongodb://mongo:27017/todos
     depends_on:
